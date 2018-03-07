@@ -12,7 +12,19 @@ app.factory('testmodulFactory', function() {
             return "Hello World";
         },
         getData: function(){
+			
+			var obj = {content:null};
 
+            $http({
+                method : "GET",
+                url : "templates/jsondata.json"
+            }).then(function mySuccess(response) {
+                obj = response.data;
+            }, function myError(response) {
+                obj = response.statusText;
+            });
+
+            return obj; 
         },
         getDataByName: function(name){
             
